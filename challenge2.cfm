@@ -12,6 +12,8 @@ Step 2
 Alternate the background color of every other row using "yellow" as the background color.
 Bonus: Using AJAX via the provided jQuery library, display data and time on the page. Complete the function getDateTime() in the challenge.cfc component to get the date and time.
 --->
+<cfset variables.thisBaseURL = getPageContext().getRequest().GetRequestUrl()>
+<cfset variables.thisBaseURL = getDirectoryFromPath(left(variables.thisBaseURL, len(variables.thisBaseURL) - len(getPageContext().getRequest().getPathInfo())))>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -25,7 +27,7 @@ Bonus: Using AJAX via the provided jQuery library, display data and time on the 
 	<script>
 		$(document).ready( function () {
 			/* Get players data and populate players-table table */
- 			fetch("challenge.cfc?method=getplayers")
+ 			fetch("<cfoutput>#variables.thisBaseURL#</cfoutput>challenge.cfc?method=getplayers")
 				.then(response => response.json())
 				.then(response => {
  					if (response.SUCCESS){
@@ -46,7 +48,7 @@ Bonus: Using AJAX via the provided jQuery library, display data and time on the 
 				.catch(console.error);
 
 			/* Get date and time and display on screen */
-			fetch("challenge.cfc?method=getdatetime")
+			fetch("<cfoutput>#variables.thisBaseURL#</cfoutput>challenge.cfc?method=getdatetime")
 				.then(response => response.json())
 				.then(response => {
 					let dateStr = $.parseJSON(response);

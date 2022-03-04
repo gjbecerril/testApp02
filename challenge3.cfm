@@ -50,7 +50,7 @@ Bonus: Implement a formated UI for the data returned. Functionality may include,
 				</tr>
 			</thead>
 			<tbody id="players">
- 			<cfloop array="#variables.qryPlayers#" item="variables.thisItem">
+ 			<cfloop array="#variables.qryPlayers#" index="variables.thisItem">
 				<tr>
 					<td>#variables.thisItem.fullname#</td>
 					<td>#variables.thisItem.height#</td>
