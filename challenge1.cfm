@@ -6,7 +6,6 @@ form element.
 <!--- validation and mail tag goes here --->
 <cfset variables.sendEmail = false>
 <cfset variables.errorMsg = "">
-<!--- <cfif event.valueExists("sendFrom") and len(trim(event.getValue("sendFrom")))> --->
 <cfif structKeyExists(form, "sendFrom") and len(trim(structKeyExists(form, "sendFrom")))>
 	<cftry>
 		<cfmail from="#form.sendFrom#" to="info@wamdevtech.com" subject="Javier Becerril - Code Challenge 1" type="html">
@@ -14,7 +13,6 @@ form element.
 		</cfmail>
 		<cfset variables.sendEmail = true>
 		<cfcatch type="any">
-			<cfdump var="#cfcatch#">
 			<cfset variables.errorMsg = "Error occurred">	
 		</cfcatch>
 	</cftry>
